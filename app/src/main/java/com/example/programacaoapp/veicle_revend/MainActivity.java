@@ -11,10 +11,12 @@ import android.support.v4.app.NotificationCompat;
 import android.view.View;
 import android.widget.TextView;
 
+import com.crashlytics.android.Crashlytics;
 import com.example.programacaoapp.veicle_revend.component.DaggerVehicleComponent;
 import com.example.programacaoapp.veicle_revend.component.VehicleComponent;
 import com.example.programacaoapp.veicle_revend.model.Vehicle;
 import com.example.programacaoapp.veicle_revend.module.VehicleModule;
+import io.fabric.sdk.android.Fabric;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -25,6 +27,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Fabric.with(this, new Crashlytics());
         setContentView(R.layout.activity_main);
 
         speedValue = (TextView) findViewById(R.id.current_speed_value);
