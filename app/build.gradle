@@ -26,6 +26,9 @@ android {
         targetSdkVersion 23
         versionCode 1
         versionName "1.0"
+        manifestPlaceholders = [onesignal_app_id: "4fd1a2da-a0b6-4d85-99db-29a709e64964",
+                                // Project number pulled from dashboard, local value is ignored.
+                                onesignal_google_project_number: "REMOTE"]
     }
     buildTypes {
         release {
@@ -40,7 +43,6 @@ dependencies {
     testCompile 'junit:junit:4.12'
     testCompile 'org.mockito:mockito-core:1.10.19'
     compile 'com.android.support:appcompat-v7:23.0.1'
-    apply plugin: 'com.google.gms.google-services'
     compile 'com.google.dagger:dagger:2.6.1'
     apt 'com.google.dagger:dagger-compiler:2.6.1'
     provided 'org.glassfish:javax.annotation:10.0-b28'
@@ -65,4 +67,14 @@ dependencies {
     compile('com.crashlytics.sdk.android:crashlytics:2.6.5@aar') {
         transitive = true;
     }
+    compile 'com.onesignal:OneSignal:3.+@aar'
+
+    // Required for OneSignal, even if you have added FCM.
+    compile 'com.google.android.gms:play-services-gcm:+'
+
+    // Required for geotagging
+    compile "com.google.android.gms:play-services-location:+"
+
+    // play-services-analytics is only needed when using 8.1.0 or older.
+     compile 'com.google.android.gms:play-services-analytics:+'
 }
