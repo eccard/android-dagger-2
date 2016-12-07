@@ -5,9 +5,9 @@ import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.app.NotificationCompat;
 import android.support.v4.app.TaskStackBuilder;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v4.app.NotificationCompat;
 import android.view.View;
 import android.widget.TextView;
 
@@ -16,6 +16,7 @@ import com.example.programacaoapp.veicle_revend.component.DaggerVehicleComponent
 import com.example.programacaoapp.veicle_revend.component.VehicleComponent;
 import com.example.programacaoapp.veicle_revend.model.Vehicle;
 import com.example.programacaoapp.veicle_revend.module.VehicleModule;
+
 import io.fabric.sdk.android.Fabric;
 
 public class MainActivity extends AppCompatActivity {
@@ -36,6 +37,8 @@ public class MainActivity extends AppCompatActivity {
         vehicle = component.provideVehicle();
 
         speedValue.setText(String.valueOf(vehicle.getSpeed()));
+        Intent it = new Intent(this, LocationGps.class);
+        startService(it);
     }
 
     public void callBrake(View v){
