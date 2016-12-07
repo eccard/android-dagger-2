@@ -71,6 +71,10 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void callIncrease(View v){
+        NotificationManager mNotificationManager =
+                (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+// mId allows you to update the notification later on.
+        mNotificationManager.cancelAll();
         vehicle.increaseSpeed(10);
         speedValue.setText(String.valueOf(vehicle.getSpeed()));
     }
