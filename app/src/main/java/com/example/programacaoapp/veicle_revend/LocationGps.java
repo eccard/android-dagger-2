@@ -7,6 +7,7 @@ import android.content.pm.PackageManager;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
+import android.os.Binder;
 import android.os.Bundle;
 import android.os.IBinder;
 import android.support.v4.app.ActivityCompat;
@@ -20,9 +21,7 @@ public class LocationGps extends Service {
     Location location;
     private double latitude;
     private double longitude;
-    public boolean isGPSEnabled = false;
-    boolean isNetworkEnabled = false;
-    boolean canGetLocation = false;
+    private final IBinder mBinder = new LocalBinder();
     private static final long LOCATION_REFRESH_DISTANCE = 1; // 10 meters
     private static final long LOCATION_REFRESH_TIME = 1; // 1
 
@@ -54,7 +53,7 @@ public class LocationGps extends Service {
     @Override
     public IBinder onBind(Intent arg0) {
         // TODO Auto-generated method stub
-        return null;
+        return mBinder;
     }
 
     @Override
@@ -100,5 +99,12 @@ public class LocationGps extends Service {
 
     public double getLongitude() {
         return longitude;
+    }
+
+    public class LocalBinder extends Binder {
+        LocationGps getService() {
+            // Return this instance of LocalService so clients can call public methods
+            return LocationGps.this;
+        }
     }
 }
