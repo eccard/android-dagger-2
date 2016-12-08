@@ -32,14 +32,13 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         speedValue = (TextView) findViewById(R.id.current_speed_value);
-
         startService(new Intent(this, LocationGps.class));
 //        if (locationGps.canGetLocation) {
 //            double latitude = locationGps.getLatitude();
 //            double longitude = locationGps.getLongitude();
 //
-//            Toast.makeText(getApplicationContext(), "Your location is -\nLat: "+ latitude +" -\nLong: "+longitude, Toast.LENGTH_LONG);
-//        }
+//        Toast.makeText(getApplicationContext(), "Your location is -\nLat: "+ latitude +" -\nLong: "+longitude, Toast.LENGTH_LONG);
+
         VehicleComponent component = DaggerVehicleComponent.builder().vehicleModule(new VehicleModule()).build();
         vehicle = component.provideVehicle();
 
