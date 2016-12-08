@@ -54,7 +54,7 @@ public class MainActivity extends AppCompatActivity {
 
     public void showMesage() {
         Toast.makeText(this, "Your location is -\nLat: " + latitude + " -\nLong: " + longitude, Toast.LENGTH_LONG);
-        Log.v("location ", "Your location is -\nLat: " + latitude + " -\nLong: " + longitude); 
+        Log.v("location ", "Your location is -\nLat: " + latitude + " -\nLong: " + longitude);
     }
 
     public void callBrake(View v){
